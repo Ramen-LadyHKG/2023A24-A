@@ -363,8 +363,8 @@ function partition_setup() {
         if [ "$PARTITION_PARTED_FILE_SYSTEM_TYPE" == "f2fs" ]; then
             PARTITION_PARTED_FILE_SYSTEM_TYPE=""
         fi
-        PARTITION_PARTED_UEFI="mklabel gpt mkpart ESP fat32 1MiB 512MiB mkpart root $PARTITION_PARTED_FILE_SYSTEM_TYPE 512MiB 100% set 1 esp on"
-        PARTITION_PARTED_BIOS="mklabel msdos mkpart primary ext4 4MiB 512MiB mkpart primary $PARTITION_PARTED_FILE_SYSTEM_TYPE 512MiB 100% set 1 boot on"
+        PARTITION_PARTED_UEFI="mkpart root $FILE_SYSTEM_TYPE 24.7GB 100% set 1 esp on"
+        PARTITION_PARTED_BIOS="mkpart primary $FILE_SYSTEM_TYPE 24.7GB 100% set 1 boot on"
     elif [ "$PARTITION_MODE" == "custom" ]; then
         PARTITION_PARTED_UEFI="$PARTITION_CUSTOM_PARTED_UEFI"
         PARTITION_PARTED_BIOS="$PARTITION_CUSTOM_PARTED_BIOS"
@@ -435,7 +435,7 @@ function partition_options() {
 function partition_mount() {
     if [ "$FILE_SYSTEM_TYPE" == "btrfs" ]; then
         # mount subvolumes
-        mount -o "subvol=${BTRFS_SUBVOLUME_ROOT[1]},$PARTITION_OPTIONS,compress=zstd" "$DEVICE_ROOT" "${MNT_DIR}"
+        mount -o "subvol=${BTRFS_SUBVOLUME_ROOT[1]},$PARTITION_OPTIONS,compress=zstd:1" "$DEVICE_ROOT" "${MNT_DIR}"
         mkdir -p "${MNT_DIR}"/boot
         mount -o "$PARTITION_OPTIONS_BOOT" "$PARTITION_BOOT" "${MNT_DIR}"/boot
         for I in "${BTRFS_SUBVOLUMES_MOUNTPOINTS[@]}"; do
@@ -452,7 +452,7 @@ function partition_mount() {
             else
                 mkdir -p "${MNT_DIR}${SUBVOLUME[2]}"
             fi
-            mount -o "subvol=${SUBVOLUME[1]},$PARTITION_OPTIONS,compress=zstd" "$DEVICE_ROOT" "${MNT_DIR}${SUBVOLUME[2]}"
+            mount -o "subvol=${SUBVOLUME[1]},$PARTITION_OPTIONS,compress=zstd:1" "$DEVICE_ROOT" "${MNT_DIR}${SUBVOLUME[2]}"
         done
     else
         # root
