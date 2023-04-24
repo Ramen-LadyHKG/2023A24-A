@@ -1478,7 +1478,7 @@ function desktop_environment_gnome() {
 }
 
 function desktop_environment_kde() {
-    pacman_install "plasma-meta plasma-wayland-session kde-system-meta kde-utilities-meta kde-graphics-meta kde-multimedia-meta kde-network-meta"
+    pacman_install "plasma-meta plasma-wayland-session kde-system-meta vim duf"
 }
 
 function desktop_environment_xfce() {
