@@ -1478,7 +1478,15 @@ function desktop_environment_gnome() {
 }
 
 function desktop_environment_kde() {
-    pacman_install "plasma-meta plasma-wayland-session kde-system-meta vim duf"
+    pacman_install "plasma-desktop plasma-wayland-session kde-system-meta vim duf git wget openssl mokutil efibootmgr neofetch \
+    plasma5-applets-eventcalendar otf-san-francisco sierrabreeze-kwin-decoration-git archlinux-artwork \
+    noto-fonts konsole adobe-source-code-pro-fonts noto-fonts-emoji ttf-opensans ttf-roboto ttf-fira-mono ttf-bitstream-vera \
+    bluedevil breeze breeze-gtk breeze-plymouth discover drkongi flatpak-kcm kactivitymanagerd kde-cli-tools \
+    kde-gtk-config kdecoration kdeplasma-addons kgamma5 khotkeys kinfocenter kmenuedit kpipewire kscreen kscreenlocker \
+    ksshaskpass ksystemstats kwallet-pam kwayland-integration kwin kwrited layer-shell-qt libkscreen libksysguard milou \
+    oxygen oxygen-sounds plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-integration plasma-nm \
+    plasma-pa plasma-sdk plasma-systemmonitor plasma-thunderbolt plasma-vault plasma-welcome plasma-workspace plasma-workspace-wallpapers \
+    plymouth-kcm polkit-kde-agent powerdevil sddm-kcm systemsettings xdg-desktop-portal-kde"
 }
 
 function desktop_environment_xfce() {
