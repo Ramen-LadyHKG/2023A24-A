@@ -1490,7 +1490,8 @@ function desktop_environment_kde() {
     ksshaskpass ksystemstats kwallet-pam kwayland-integration kwin kwrited layer-shell-qt libkscreen libksysguard milou \
     oxygen oxygen-sounds plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-integration plasma-nm \
     plasma-pa plasma-sdk plasma-systemmonitor plasma-thunderbolt plasma-vault plasma-welcome plasma-workspace plasma-workspace-wallpapers \
-    plymouth-kcm polkit-kde-agent powerdevil sddm-kcm systemsettings xdg-desktop-portal-kde"
+    plymouth-kcm polkit-kde-agent powerdevil sddm-kcm systemsettings xdg-desktop-portal-kde \
+    noto-fonts-cjk adobe-source-han-sans-hk-fonts adobe-source-han-serif-hk-fonts"
 }
 
 function desktop_environment_xfce() {
