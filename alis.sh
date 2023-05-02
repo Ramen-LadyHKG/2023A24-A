@@ -540,9 +540,13 @@ function partition() {
             chattr +C "${MNT_DIR}"
         fi
 
+        truncate -s 0 "${MNT_DIR}${SWAPFILE}"
+
         dd if=/dev/zero of="${MNT_DIR}$SWAPFILE" bs=1M count="$SWAP_SIZE" status=progress
         chmod 600 "${MNT_DIR}${SWAPFILE}"
         mkswap "${MNT_DIR}${SWAPFILE}"
+        swapon "${MNT_DIR}${SWAPFILE}"
+
     fi
 
     # set variables
@@ -1665,6 +1669,7 @@ function end() {
             echo "Rebooting..."
             echo ""
 
+	        swapoff -a
             copy_logs
             do_reboot
         else
