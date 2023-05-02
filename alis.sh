@@ -537,13 +537,14 @@ function partition() {
     if [ -n "$SWAP_SIZE" ]; then
         if [ "$FILE_SYSTEM_TYPE" == "btrfs" ]; then
             SWAPFILE="${BTRFS_SUBVOLUME_SWAP[2]}$SWAPFILE"
-            chattr +C "${MNT_DIR}"
+            chattr +C "${MNT_DIR}/swap"
         fi
 
         truncate -s 0 "${MNT_DIR}${SWAPFILE}"
 
         dd if=/dev/zero of="${MNT_DIR}$SWAPFILE" bs=1M count="$SWAP_SIZE" status=progress
         chmod 600 "${MNT_DIR}${SWAPFILE}"
+	lsattr "${MNT_DIR}${SWAPFILE}"
         mkswap "${MNT_DIR}${SWAPFILE}"
         swapon "${MNT_DIR}${SWAPFILE}"
 
