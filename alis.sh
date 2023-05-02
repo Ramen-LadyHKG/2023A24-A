@@ -1144,7 +1144,7 @@ function bootloader() {
                 if [ "$DEVICE_TRIM" == "true" ]; then
                     BOOTLOADER_ALLOW_DISCARDS=":allow-discards"
                 fi
-                CMDLINE_LINUX="cryptdevice=UUID=$UUID_ROOT:$LUKS_DEVICE_NAME$BOOTLOADER_ALLOW_DISCARDS"
+                CMDLINE_LINUX="rd.luks.options=discard rd.luks.name=$UUID_ROOT=$LUKS_DEVICE_NAME"
                 ;;
             "systemd" )
                 if [ "$DEVICE_TRIM" == "true" ]; then
