@@ -433,7 +433,7 @@ function partition() {
 
     # luks and lvm
     if [ -n "$LUKS_PASSWORD" ]; then
-        echo -n "$LUKS_PASSWORD" | cryptsetup --key-size=512 --key-file=- luksFormat --type luks2 "$PARTITION_ROOT"
+        echo -n "$LUKS_PASSWORD" | cryptsetup --key-size=512 --key-file=- luksFormat --type luks2 --iter-time 10000 "$PARTITION_ROOT"
         echo -n "$LUKS_PASSWORD" | cryptsetup --key-file=- open "$PARTITION_ROOT" "$LUKS_DEVICE_NAME"
         sleep 5
     fi
