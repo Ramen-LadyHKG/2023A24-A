@@ -475,16 +475,16 @@ function partition() {
     if [ "$PARTITION_MODE" != "manual" ]; then
         # Delete patition filesystem in case is reinstalling in an already existing system
         # Not fail on error
-        wipefs -a -f "$PARTITION_BOOT" || true
+##        wipefs -a -f "$PARTITION_BOOT" || true
         wipefs -a -f "$DEVICE_ROOT" || true
 
         ## boot
-        if [ "$BIOS_TYPE" == "uefi" ]; then
-            mkfs.fat -n ESP -F32 "$PARTITION_BOOT"
-        fi
-        if [ "$BIOS_TYPE" == "bios" ]; then
-            mkfs.ext4 -L boot "$PARTITION_BOOT"
-        fi
+##        if [ "$BIOS_TYPE" == "uefi" ]; then
+##            mkfs.fat -n ESP -F32 "$PARTITION_BOOT"
+##        fi
+##        if [ "$BIOS_TYPE" == "bios" ]; then
+##            mkfs.ext4 -L boot "$PARTITION_BOOT"
+##        fi
         ## root
         if [ "$FILE_SYSTEM_TYPE" == "reiserfs" ]; then
             mkfs."$FILE_SYSTEM_TYPE" -f -l root "$DEVICE_ROOT"
